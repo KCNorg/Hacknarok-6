@@ -1,6 +1,16 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 
+const sendValues = (values) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values)
+    };
+    fetch('http://localhost:3000/send_values', requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState(values, null, 2));
+}
 
 const InputForm = (props) => {
 
@@ -33,8 +43,7 @@ const InputForm = (props) => {
             initialValues={{ name: '', email: '', subject: '', content: '' }}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-
-                    alert(JSON.stringify(values, null, 2));
+                    sendValues(values);
                     setSubmitting(false);
                     props.handler(1);
 
