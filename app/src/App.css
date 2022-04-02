@@ -43,3 +43,19 @@ body, html, .App, #root, .auth-wrapper {
   border-radius: 15px;
   transition: all .3s;
 }
+
+.map-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+.map-inner {
+  width: 1800px;
+  height: 720.69420px;
+  transition: all .3s;
+}
+
+::-webkit-scrollbar { 
+  display: none; 
+}

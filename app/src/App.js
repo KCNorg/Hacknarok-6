@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import InputForm from "./InputForm.js";
+import MyMap from "./components/my-map.jsx"
 
 class App extends React.Component {
     constructor(props) {
@@ -42,29 +43,29 @@ class App extends React.Component {
             </header>
 
             <main>
+            {(this.state.stage === 0) ? 
                 <div className="container">
                 <div className="row justify-content-md-center">
                     <div className="col col-lg-6">
 
-                        {(this.state.stage === 0) ? 
                             <div className="form-wrapper">
                                 <div className="form-inner">
                                     <h4>Contact Us</h4>
                                     <InputForm handler={this.handler} />
                                 </div>
                             </div>
-                        : null}
-
-                        {(this.state.stage === 1) ? 
-                            <div className="form-wrapper">
-                                <div className="form-inner">
-                                    <h4>Kurwa na wawel se pójdź i spierdalaj essa</h4>
-                                </div>
-                            </div>
-                        : null}
+                        
                     </div>
                 </div>
                 </div>
+            : null}
+            {(this.state.stage === 1) ? 
+                <div className="map-wrapper">
+                    <div className="map-inner">
+                        <MyMap/>
+                    </div>
+                </div>
+            : null}
             </main>
 
             <footer className="pt-4 my-md-5 pt-md-5 border-top">
