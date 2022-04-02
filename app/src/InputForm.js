@@ -12,7 +12,7 @@ const sendValues = (values) => {
         .then(data => this.setState(values, null, 2));
 }
 
-const InputForm = () => {
+const InputForm = (props) => {
 
     const validateForm = values => {
         const errors = {};
@@ -45,6 +45,8 @@ const InputForm = () => {
                 setTimeout(() => {
                     sendValues(values);
                     setSubmitting(false);
+                    props.handler(1);
+
                 }, 1000);
             }}
             validate={validateForm}
@@ -85,7 +87,7 @@ const InputForm = () => {
 
                     <div className="form-group">
                         <div className="row justify-content-center">
-                            <div class="col col-lg-4">
+                            <div className="col col-lg-4">
                                 <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Submit"}</button>
                             </div>
                         </div>
