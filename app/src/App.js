@@ -33,7 +33,7 @@ class App extends React.Component {
                     <div class="col col-lg-6">
                         <div className="form-wrapper">
                             <h4>Contact Us</h4>
-                            <InputForm />
+                            <InputForm id="InputForm"/>
                         </div>
                     </div>
                 </div>
