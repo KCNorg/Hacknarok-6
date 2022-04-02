@@ -37,8 +37,7 @@ class App extends React.Component {
                 </div>
 
                 <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 className="display-4 fw-normal">Pricing</h1>
-                <p className="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. Is built with default Bootstrap components and utilities with little customization.</p>
+                <h1 className="display-4 fw-normal">Find your trip!</h1> 
                 </div>
             </header>
 
@@ -49,14 +48,18 @@ class App extends React.Component {
 
                         {(this.state.stage === 0) ? 
                             <div className="form-wrapper">
-                                <h4>Contact Us</h4>
-                                <InputForm handler={this.handler} />
+                                <div className="form-inner">
+                                    <h4>Contact Us</h4>
+                                    <InputForm handler={this.handler} />
+                                </div>
                             </div>
                         : null}
 
                         {(this.state.stage === 1) ? 
                             <div className="form-wrapper">
-                                <h4>Kurwa na wawel se pójdź i spierdalaj essa</h4>
+                                <div className="form-inner">
+                                    <h4>Kurwa na wawel se pójdź i spierdalaj essa</h4>
+                                </div>
                             </div>
                         : null}
 
