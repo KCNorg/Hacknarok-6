@@ -3,6 +3,22 @@ import "./App.css";
 import InputForm from "./InputForm.js";
 
 class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = { 
+            stage: 0 
+        };
+
+        this.handler = this.handler.bind(this)
+    }
+
+    handler = (newStage) => {
+        console.log("ESSSSSSSAAAA")
+        this.setState({
+            stage: newStage
+        })
+    }
+
     render() {
         return (
             <div className="container py-3">
@@ -13,10 +29,10 @@ class App extends React.Component {
                 </a>
 
                 <nav className="d-inline-flex mt-2 mt-md-0 ms-md-auto">
-                    <a className="me-3 py-2 text-dark text-decoration-none" href="#">Features</a>
-                    <a className="me-3 py-2 text-dark text-decoration-none" href="#">Enterprise</a>
-                    <a className="me-3 py-2 text-dark text-decoration-none" href="#">Support</a>
-                    <a className="py-2 text-dark text-decoration-none" href="#">Pricing</a>
+                    <a className="me-3 py-2 text-dark text-decoration-none" href=".">Features</a>
+                    <a className="me-3 py-2 text-dark text-decoration-none" href=".">Enterprise</a>
+                    <a className="me-3 py-2 text-dark text-decoration-none" href=".">Support</a>
+                    <a className="py-2 text-dark text-decoration-none" href=".">Pricing</a>
                 </nav>
                 </div>
 
@@ -27,27 +43,25 @@ class App extends React.Component {
             </header>
 
             <main>
-                {/* <div className="row row-cols-1 row-cols-md-3 mb-3 text-center"> */}
-                <div class="container">
-                <div class="row justify-content-md-center">
-                    <div class="col col-lg-6">
-                        <div className="form-wrapper">
-                            <h4>Contact Us</h4>
-                            <InputForm />
-                        </div>
+                <div className="container">
+                <div className="row justify-content-md-center">
+                    <div className="col col-lg-6">
+
+                        {(this.state.stage === 0) ? 
+                            <div className="form-wrapper">
+                                <h4>Contact Us</h4>
+                                <InputForm handler={this.handler} />
+                            </div>
+                        : null}
+
+                        {(this.state.stage === 1) ? 
+                            <div className="form-wrapper">
+                                <h4>Kurwa na wawel se pójdź i spierdalaj essa</h4>
+                            </div>
+                        : null}
+
                     </div>
                 </div>
-                {/* <div class="row">
-                    <div class="col">
-                    1 of 3
-                    </div>
-                    <div class="col-md-auto">
-                    Variable width content
-                    </div>
-                    <div class="col col-lg-2">
-                    3 of 3
-                    </div>
-                </div> */}
                 </div>
             </main>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, Form } from 'formik';
 
 
-const InputForm = () => {
+const InputForm = (props) => {
 
     const validateForm = values => {
         const errors = {};
@@ -33,8 +33,11 @@ const InputForm = () => {
             initialValues={{ name: '', email: '', subject: '', content: '' }}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
+
                     alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
+                    props.handler(1);
+
                 }, 1000);
             }}
             validate={validateForm}
@@ -75,7 +78,7 @@ const InputForm = () => {
 
                     <div className="form-group">
                         <div className="row justify-content-center">
-                            <div class="col col-lg-4">
+                            <div className="col col-lg-4">
                                 <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Submit"}</button>
                             </div>
                         </div>
