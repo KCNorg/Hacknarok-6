@@ -40,7 +40,7 @@ const InputForm = () => {
             validate={validateForm}
         >
             {(formik, isSubmitting) => (
-                <Form className="row g-3">                    
+                <Form className="cc">                    
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <Field name="name" className={(formik.touched.name && formik.errors.name) ? 'form-control is-invalid' : 'form-control'} type="text" />
