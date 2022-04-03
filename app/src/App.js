@@ -57,11 +57,48 @@ class App extends React.Component {
                 </div>
                 </div>
                 {(this.state.stage === 1) ? 
+                            
+                <div class="row">
+                    <div className="column">
+                        <table className="table">
+                        <thead className="table-light">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Points</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Eve</td>
+                            <td>Jackson</td>
+                            <td>94</td>
+                        </tr>
+                        <tr>
+                            <td>Adam</td>
+                            <td>Johnson</td>
+                            <td>67</td>
+                        </tr>
+                        </tbody>
+
+                        </table>
+                    </div>
+                    
+                    <div className="column">
                     <div className="map-wrapper">
                         <div className="map-inner">
-                            <img src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=1800&height=800&center=lonlat:19.8933483,50.0549163&zoom=13&marker=lonlat:19.8933483,50.0549163;color:%23ff0000;size:medium;text:1|lonlat:19.909501664466546,50.0365491;color:%23ff0000;size:medium;text:2|lonlat:19.943065943839876,50.0639468;color:%23ff0000;size:medium;text:3&apiKey=05a786c10b224977937d2a9a5f16fd40"></img>
+                            <img className="map-img" src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=1800&height=1800&center=lonlat:19.941,50.059&zoom=16&marker=lonlat:19.943065943839876,50.0639468;color:%23ff0000;size:medium;text:1%7Clonlat:19.935455391368265,50.05465045;color:%23ff0000;size:medium;text:2%7Clonlat:19.9352391,50.0544944;color:%23ff0000;size:medium;text:3%7Clonlat:19.936092126665912,50.05921945;color:%23ff0000;size:medium;text:4%7Clonlat:19.939448463898756,50.0616547;color:%23ff0000;size:medium;text:5%7Clonlat:19.937348815057142,50.061692199999996;color:%23ff0000;size:medium;text:6%7Clonlat:19.94145102617512,50.0654581;color:%23ff0000;size:medium;text:7&apiKey=05a786c10b224977937d2a9a5f16fd40"></img>
                         </div>
                     </div>
+                    </div>
+                </div>
                 : null}
             </main>
 
