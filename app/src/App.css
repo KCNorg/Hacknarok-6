@@ -39,6 +39,8 @@ body {
   justify-content: center;
   flex-direction: column;
   text-align: left;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 .form-inner {
   width: 450px;
