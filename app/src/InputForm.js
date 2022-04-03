@@ -1,40 +1,102 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Field, Form } from 'formik';
+import { useField } from 'formik';
+import Select from 'react-select';
+import { Multiselect } from 'multiselect-react-dropdown';
+import Creatable from 'react-select/creatable'
 
+const InputForm = (props) => {
+    const [name, setName] = useState('')
+    const [family, setFamily] = useState('')
+    const [age, setAge] = useState('')
+    const [roleValue, setRoleValue] = useState('')
+    const [tagInputValue, setTagInputValue] = useState('')
+    const [tagValue, setTagValue] = useState('')
+    
+    
+    const handleChange = (field, value) => {
+      switch (field) {
+        case 'roles':
+          setRoleValue(value)
+          break
+  
+        default:
+          break
+      }
+    }
+  
+    const handleKeyDown = event => {
+      if (!tagInputValue) return
+      switch (event.key) {
+        case 'Enter':
+        case 'Tab':
+          setTagValue([...tagValue, createOption(tagInputValue)])
+          setTagInputValue('')
+  
+          event.preventDefault()
+          break
+  
+        default:
+          break
+      }
+    }
+  
+    const createOption = label => ({
+      label,
+      value: label
+    })
+  
+    const handleInputChange = (value) => {
+      setTagInputValue(value)
+    }
 
-const InputForm = () => {
+    const data = [{Val: 'Kościół',id:1},{Val: 'Stare budynki', id:2} , {Val: 'Twój stary', id:3}, {Val: 'Roman', id:5},{Val: 'Tanie dziwki', id:5}]
+    const [options] = useState(data);
+    function SelectField(props) {
+        const [field, state, { setValue, setTouched }] = useField(props.field.name);
+        
+        // value is an array now
+        const onChange = (value) => {
+          setValue(value);
+        };
+      
+       // use value to make this a  controlled component
+       // now when the form receives a value for 'campfeatures' it will populate as expected
+        return <Select {...props} value={state?.value} isMulti onChange={onChange} onBlur={setTouched} />;
+    }
 
     const validateForm = values => {
         const errors = {};
-        if (!values.name) {
-            errors.name = 'Name is required';
-        } else if (values.name.length > 15) {
-            errors.name = 'Must be 15 characters or less';
+        if (!Number.isInteger(values.budget)) {
+            errors.budget = 'Must be number';
         }
 
 
-        if (!values.email) {
-            errors.email = 'Email is required';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-        }
+        // if (!values.email) {
+        //     errors.email = 'Email is required';
+        // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        //     errors.email = 'Invalid email address';
+        // }
 
 
-        if (!values.subject) {
-            errors.subject = 'Subject is required';
-        }
+        // if (!values.subject) {
+        //     errors.subject = 'Subject is required';
+        // }
 
-        return errors;
+        // return errors;
     };
 
 
     return (
         <Formik
-            initialValues={{ name: '', email: '', subject: '', content: '' }}
+            initialValues={{ budget: '', startingplace: '', destination: '', preferences: ''}}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
+
                     alert(JSON.stringify(values, null, 2));
                     setSubmitting(false);
+                    props.handler(1);
+
                 }, 1000);
             }}
             validate={validateForm}
@@ -42,40 +104,82 @@ const InputForm = () => {
             {(formik, isSubmitting) => (
                 <Form className="row g-3">                    
                     <div className="form-group">
-                        <label htmlFor="name">Name</label>
-                        <Field name="name" className={(formik.touched.name && formik.errors.name) ? 'form-control is-invalid' : 'form-control'} type="text" />
+                        <label htmlFor="budget">Budget</label>
+                        <Field name="budget" className={(formik.touched.budget && formik.errors.budget) ? 'form-control is-invalid' : 'form-control'} type="text" />
                         
-                        {formik.touched.name && formik.errors.name ? (
-                            <div className="invalid-feedback">{formik.errors.name}</div>
+                        {formik.touched.budget && formik.errors.budget ? (
+                            <div className="invalid-feedback">{formik.errors.budget}</div>
                         ) : null}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email">Email Address</label>
-                        <Field name="email" className={(formik.touched.email && formik.errors.email) ? 'form-control is-invalid' : 'form-control'} type="email" />
+                        <label htmlFor="starting-place">Starting place</label>
+                        <Field name="starting-place" className={(formik.touched.startingplace && formik.errors.startingplace) ? 'form-control is-invalid' : 'form-control'} type="test" />
                         
-                        {formik.touched.email && formik.errors.email ? (
-                            <div className="invalid-feedback">{formik.errors.email}</div>
+                        {formik.touched.startingplace && formik.errors.startingplace ? (
+                            <div className="invalid-feedback">{formik.errors.startingplace}</div>
                         ) : null}
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="destination">Destination</label>
+                        <Field name="destination" className={(formik.touched.destination && formik.errors.destination) ? 'form-control is-invalid' : 'form-control'} type="text" />
+                        
+                        {formik.touched.destination && formik.errors.destination ? (
+                            <div className="invalid-feedback">{formik.errors.destination}</div>
+                        ) : null}
+                    </div>
+
+                    {/* <div className="form-group">
+                        <label htmlFor="preferences">Preferences</label>
+                        <Multiselect 
+                         options={options}
+                         displayValue="Val"
+                         components={{ Option }}
+                         isMulti closeMenuOnSelect={true}
+                         hideSelectedOptions={true}
+                         controlShouldRenderValue = { true }
+
+                            // component={SelectField}
+                            // name="campfeatures"
+                            // options={selectObjects}
+                        />
+                    </div> */}
+                    <div className="form-group">
+                        <label htmlFor="preferences">Preferences</label>
+                              <Creatable
+                                isClearable
+                                isMulti
+                                components={
+                                { DropdownIndicator: null }
+                                }
+                                options={options}
+                                formatCreateLabel={() => undefined}
+                                inputValue={tagInputValue}
+                                menuIsOpen={false}
+                                onChange={(value) => handleChange('tags', value)}
+                                placeholder='Type something and press enter...'
+                                onKeyDown={handleKeyDown}
+                                onInputChange={handleInputChange}
+                                value={tagValue}
+                            />
+                    </div>
+                    {/* <div className="form-group">
                         <label htmlFor="subject">Subject</label>
                         <Field name="subject" className={(formik.touched.subject && formik.errors.subject) ? 'form-control is-invalid' : 'form-control'} type="text" />
                         
                         {formik.touched.subject && formik.errors.subject ? (
                             <div className="invalid-feedback">{formik.errors.subject}</div>
                         ) : null}
-                    </div>
-
-                    <div className="form-group">
+                    </div> */}
+                    {/* <div className="form-group">
                         <label htmlFor="content">Content</label>
                         <Field name="content" className="form-control" as="textarea" rows={3} cols={10} />
-                    </div>
+                    </div> */}
 
                     <div className="form-group">
                         <div className="row justify-content-center">
-                            <div class="col col-lg-4">
+                            <div className="col col-lg-4">
                                 <button type="submit" className="btn btn-primary w-100" disabled={isSubmitting}>{isSubmitting ? "Please wait..." : "Submit"}</button>
                             </div>
                         </div>
