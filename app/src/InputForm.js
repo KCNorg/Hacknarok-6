@@ -128,28 +128,30 @@ const InputForm = (props) => {
                 <Form className="row g-3">                    
                     <div className="form-group">
                         <label htmlFor="budget">Budget</label>
-                        <Field name="budget" className={(formik.touched.budget && formik.errors.budget) ? 'form-control is-invalid' : 'form-control'} type="text" />
+                        <Field placeholder='EUR' name="budget" className={(formik.touched.budget && formik.errors.budget) ? 'form-control is-invalid' : 'form-control'} type="text" />
                         
                         {formik.touched.budget && formik.errors.budget ? (
                             <div className="invalid-feedback">{formik.errors.budget}</div>
                         ) : null}
                     </div>
 
+                    
+
                     <div className="form-group">
-                        <label htmlFor="starting-place">Starting place</label>
-                        <Field name="starting-place" className={(formik.touched.startingplace && formik.errors.startingplace) ? 'form-control is-invalid' : 'form-control'} type="test" />
+                        <label htmlFor="destination">Destination</label>
+                        <Field placeholder='Example: Kraków, Poland' name="destination" className={(formik.touched.destination && formik.errors.destination) ? 'form-control is-invalid' : 'form-control'} type="text" />
                         
-                        {formik.touched.startingplace && formik.errors.startingplace ? (
-                            <div className="invalid-feedback">{formik.errors.startingplace}</div>
+                        {formik.touched.destination && formik.errors.destination ? (
+                            <div className="invalid-feedback">{formik.errors.destination}</div>
                         ) : null}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="destination">Destination</label>
-                        <Field name="destination" className={(formik.touched.destination && formik.errors.destination) ? 'form-control is-invalid' : 'form-control'} type="text" />
+                        <label htmlFor="starting-place">Length of stay</label>
+                        <Field placeholder='Number of days' name="starting-place" className={(formik.touched.startingplace && formik.errors.startingplace) ? 'form-control is-invalid' : 'form-control'} type="test" />
                         
-                        {formik.touched.destination && formik.errors.destination ? (
-                            <div className="invalid-feedback">{formik.errors.destination}</div>
+                        {formik.touched.startingplace && formik.errors.startingplace ? (
+                            <div className="invalid-feedback">{formik.errors.startingplace}</div>
                         ) : null}
                     </div>
 

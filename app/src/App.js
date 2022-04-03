@@ -7,7 +7,8 @@ class App extends React.Component {
         super(props)
         this.state = { 
             stage: 0,
-            map: ""
+            map: "",
+            palces: []
         };
 
         this.handler = this.handler.bind(this)
@@ -16,7 +17,8 @@ class App extends React.Component {
     handler = (data) => {
         console.log(data)
         this.setState({
-            map: data.map
+            map: data.map,
+            places: data.places
         })
         this.setState({
             stage: 1,
@@ -40,7 +42,10 @@ class App extends React.Component {
                 </div>
 
                 <div className="pricing-header p-3 pb-md-4 mx-auto text-center">
-                <h1 className="display-4 fw-normal">Find your trip!</h1> 
+                {(this.state.stage === 0) ? 
+                <h1 className="display-4 fw-normal"> Find your trip!</h1> 
+                : <h1 className="display-4 fw-normal"> Your trip is here!</h1> 
+                }
                 </div>
             </header>
 
@@ -63,46 +68,36 @@ class App extends React.Component {
                 {(this.state.stage === 1) ? 
                             
                 <div class="row">
-                    <div className="column">
-                        <table className="table">
-                        <thead className="table-light">
+                    <div className="column table-responsive">
+                        <table className="table table-responsive table-borderless">
+                        <thead>
                         <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Points</th>
+                            <th>Order</th>
+                            <th>Place name</th>
+                            <th>Categories</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         
-                        <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                        </tr>
-                        <tr>
-                            <td>Eve</td>
-                            <td>Jackson</td>
-                            <td>94</td>
-                        </tr>
-                        <tr>
-                            <td>Adam</td>
-                            <td>Johnson</td>
-                            <td>67</td>
-                        </tr>
+                        {
+                            this.state.places.map((place, index) => {
+                                console.log(place)
+                                console.log(index)
+                                return (<tr>
+                                    <td>{index + 1}</td>
+                                    <td>{place.name}</td>
+                                    <td>{place.categories[0]}, {place.categories[1]}</td>
+                                </tr>)
+                            })
+                        }
                         </tbody>
 
                         </table>
                     </div>
                     
                     <div className="column">
-                    <div className="map-wrapper">
-                        <div className="map-inner">
-
-                            <img src={this.state.map}></img>
-
-                        </div>
-                    </div>
+                        <img className="map-img" src={this.state.map}></img>
                     </div>
                 </div>
                 : null}
@@ -111,7 +106,7 @@ class App extends React.Component {
             <footer className="pt-4 my-md-5 pt-md-5 border-top">
                 <div className="row">
                     <div className="col-12 col-md">
-                        <small className="d-block mb-3 text-muted">&copy; 2017–2021</small>
+                        <small className="d-block mb-3 text-muted">&copy; Romanitos Banditos 2022</small>
                     </div>
                     <div className="col-6 col-md">
                         <h5>Features</h5>
