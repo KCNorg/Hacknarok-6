@@ -10,7 +10,7 @@ const sendValues = (values) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values)
     };
-    fetch('http://localhost:3000/send_values', requestOptions)
+    fetch('http://localhost:3000/run', requestOptions)
         .then(response => response.json())
         .then(data => this.setState(values, null, 2));
 }
@@ -60,7 +60,7 @@ const InputForm = (props) => {
       setTagInputValue(value)
     }
 
-    const data = [{Val: 'Kościół',id:1},{Val: 'Stare budynki', id:2} , {Val: 'Twój stary', id:3}, {Val: 'Roman', id:5},{Val: 'Tanie dziwki', id:5}]
+    const data = [{Val: 'History',id:1}, {Val: 'Architecture', id:2} , {Val: 'Art', id:3}, {Val: 'Nature', id:5},{Val: 'Fun', id:5}]
     const [options] = useState(data);
     function SelectField(props) {
         const [field, state, { setValue, setTouched }] = useField(props.field.name);
@@ -102,7 +102,7 @@ const InputForm = (props) => {
             initialValues={{ budget: '', startingplace: '', destination: '', preferences: ''}}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-                    sendValues(values);
+                    console.log(sendValues(values));
                     setSubmitting(false);
                     props.handler(1);
 

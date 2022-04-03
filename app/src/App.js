@@ -53,17 +53,16 @@ class App extends React.Component {
                                 </div>
                             </div>
                         : null}
-
-                        {(this.state.stage === 1) ? 
-                            <div className="form-wrapper">
-                                <div className="form-inner">
-                                    <h4>Kurwa na wawel se pójdź i spierdalaj essa</h4>
-                                </div>
-                            </div>
-                        : null}
                     </div>
                 </div>
                 </div>
+                {(this.state.stage === 1) ? 
+                    <div className="map-wrapper">
+                        <div className="map-inner">
+                            <img src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=1800&height=800&center=lonlat:19.8933483,50.0549163&zoom=13&marker=lonlat:19.8933483,50.0549163;color:%23ff0000;size:medium;text:1|lonlat:19.909501664466546,50.0365491;color:%23ff0000;size:medium;text:2|lonlat:19.943065943839876,50.0639468;color:%23ff0000;size:medium;text:3&apiKey=05a786c10b224977937d2a9a5f16fd40"></img>
+                        </div>
+                    </div>
+                : null}
             </main>
 
             <footer className="pt-4 my-md-5 pt-md-5 border-top">
