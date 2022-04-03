@@ -1,28 +1,39 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
-
+// import { useField } from 'formik';
+// import Select from 'react-select';
 
 const InputForm = (props) => {
+    // function SelectField(props) {
+    //     const [field, state, { setValue, setTouched }] = useField(props.field.name);
+        
+    //     // value is an array now
+    //     const onChange = (value) => {
+    //       setValue(value);
+    //     };
+      
+    //    // use value to make this a  controlled component
+    //    // now when the form receives a value for 'campfeatures' it will populate as expected
+    //     return <Select {...props} value={state?.value} isMulti onChange={onChange} onBlur={setTouched} />;
+    // }
 
     const validateForm = values => {
         const errors = {};
-        if (!values.name) {
-            errors.name = 'Name is required';
-        } else if (values.name.length > 15) {
-            errors.name = 'Must be 15 characters or less';
+        if (!Number.isInteger(values.budget)) {
+            errors.budget = 'Must be number';
         }
 
 
-        if (!values.email) {
-            errors.email = 'Email is required';
-        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-        }
+        // if (!values.email) {
+        //     errors.email = 'Email is required';
+        // } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        //     errors.email = 'Invalid email address';
+        // }
 
 
-        if (!values.subject) {
-            errors.subject = 'Subject is required';
-        }
+        // if (!values.subject) {
+        //     errors.subject = 'Subject is required';
+        // }
 
         return errors;
     };
@@ -30,7 +41,7 @@ const InputForm = (props) => {
 
     return (
         <Formik
-            initialValues={{ name: '', email: '', subject: '', content: '' }}
+            initialValues={{ budget: '', startingplace: '', destination: '', preferences: ''}}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
 
@@ -45,36 +56,53 @@ const InputForm = (props) => {
             {(formik, isSubmitting) => (
                 <Form className="row g-3">                    
                     <div className="form-group">
-                        <label htmlFor="name">Name</label>
-                        <Field name="name" className={(formik.touched.name && formik.errors.name) ? 'form-control is-invalid' : 'form-control'} type="text" />
+                        <label htmlFor="budget">Budget</label>
+                        <Field name="budget" className={(formik.touched.budget && formik.errors.budget) ? 'form-control is-invalid' : 'form-control'} type="text" />
                         
-                        {formik.touched.name && formik.errors.name ? (
-                            <div className="invalid-feedback">{formik.errors.name}</div>
+                        {formik.touched.budget && formik.errors.budget ? (
+                            <div className="invalid-feedback">{formik.errors.budget}</div>
                         ) : null}
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="email">Email Address</label>
-                        <Field name="email" className={(formik.touched.email && formik.errors.email) ? 'form-control is-invalid' : 'form-control'} type="email" />
+                        <label htmlFor="starting-place">Starting place</label>
+                        <Field name="starting-place" className={(formik.touched.startingplace && formik.errors.startingplace) ? 'form-control is-invalid' : 'form-control'} type="test" />
                         
-                        {formik.touched.email && formik.errors.email ? (
-                            <div className="invalid-feedback">{formik.errors.email}</div>
+                        {formik.touched.startingplace && formik.errors.startingplace ? (
+                            <div className="invalid-feedback">{formik.errors.startingplace}</div>
                         ) : null}
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="destination">Destination</label>
+                        <Field name="destination" className={(formik.touched.destination && formik.errors.destination) ? 'form-control is-invalid' : 'form-control'} type="text" />
+                        
+                        {formik.touched.destination && formik.errors.destination ? (
+                            <div className="invalid-feedback">{formik.errors.destination}</div>
+                        ) : null}
+                    </div>
+
+                    {/* <div className="form-group">
+                        <label htmlFor="preferences">Preferences</label>
+                        <Field
+                            component={SelectField}
+                            name="campfeatures"
+                            options={selectObjects}
+                        />
+                    </div> */}
+                    
+                    {/* <div className="form-group">
                         <label htmlFor="subject">Subject</label>
                         <Field name="subject" className={(formik.touched.subject && formik.errors.subject) ? 'form-control is-invalid' : 'form-control'} type="text" />
                         
                         {formik.touched.subject && formik.errors.subject ? (
                             <div className="invalid-feedback">{formik.errors.subject}</div>
                         ) : null}
-                    </div>
-
-                    <div className="form-group">
+                    </div> */}
+                    {/* <div className="form-group">
                         <label htmlFor="content">Content</label>
                         <Field name="content" className="form-control" as="textarea" rows={3} cols={10} />
-                    </div>
+                    </div> */}
 
                     <div className="form-group">
                         <div className="row justify-content-center">
