@@ -7,9 +7,15 @@ const sendValues = (values) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(values)
     };
+    
     fetch('http://localhost:3000/send_values', requestOptions)
-        .then(response => response.json())
-        .then(data => this.setState(values, null, 2));
+    .then((response) => {
+        response.json()
+    .then((data) => {
+            console.log(data);
+        });
+    });    
+
 }
 
 const InputForm = (props) => {
@@ -37,7 +43,6 @@ const InputForm = (props) => {
         // return errors;
         return true;
     };
-
 
     return (
         <Formik

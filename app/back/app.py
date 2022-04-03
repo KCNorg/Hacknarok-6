@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import time
 
 
@@ -10,7 +10,9 @@ def get_curr_time():
 
 @app.route('/send_values', methods=['POST'], strict_slashes=False)
 def send_values():
-    return request.json['name']
+    data = request.json
+    print(data)
+    return {'lng': 60, 'lat': 56}
 
 # @app.route('/add_point')
 

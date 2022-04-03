@@ -44,7 +44,7 @@ body, html, .App, #root, .auth-wrapper {
   transition: all .3s;
 }
 
-.map-wrapper {
+/* .map-wrapper {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -54,7 +54,7 @@ body, html, .App, #root, .auth-wrapper {
   width: 1800px;
   height: 720.69420px;
   transition: all .3s;
-}
+} */
 
 ::-webkit-scrollbar { 
   display: none; 

@@ -61,9 +61,9 @@ class App extends React.Component {
             : null}
             {(this.state.stage === 1) ? 
                 <div className="map-wrapper">
-                    <div className="map-inner">
-                        <MyMap/>
-                    </div>
+                <div className="map-inner">
+                    <MyMap />
+                </div>
                 </div>
             : null}
             </main>

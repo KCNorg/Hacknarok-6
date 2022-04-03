@@ -13,3 +13,12 @@
         margin: auto;
     }
 }
+
+.airport {
+    height: 69px;
+    width: 47px;
+    background-image: url(https://api.geoapify.com/v1/icon/?type=awesome&scaleFactor=2&color=%2372a2d4&size=x-large&icon=plane-departure&apiKey=12439a4aeca04d05bec6c2bd7f3e7731);
+    background-size: contain;
+    cursor: pointer;
+}
+  
