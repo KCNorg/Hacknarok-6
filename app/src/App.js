@@ -74,7 +74,8 @@ class App extends React.Component {
                         <tr>
                             <th>Order</th>
                             <th>Place name</th>
-                            <th>Categories</th>
+                            <th style={{textAlign: "right"}}>Place attractiveness</th>
+                            <th style={{textAlign: "right"}}>Categories</th>
                         </tr>
                         </thead>
 
@@ -87,7 +88,18 @@ class App extends React.Component {
                                 return (<tr>
                                     <td>{index + 1}</td>
                                     <td>{place.name}</td>
-                                    <td>{place.categories[0]}, {place.categories[1]}</td>
+                                    <td style={{textAlign: "right"}}>{place.attractiveness}</td>
+                                    <td style={{textAlign: "right"}}>
+                                    {
+                                    place.categories.map((cat, index) => {
+                                        return (
+                                            index != (place.categories.length - 1) ? <span>{cat}, </span> : <span>{cat}</span>
+                                        )
+                                    })
+                                    
+                                    // place.categories[0]}, {place.categories[1]
+                                    
+                                    }</td>
                                 </tr>)
                             })
                         }
