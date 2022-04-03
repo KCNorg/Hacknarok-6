@@ -3,8 +3,53 @@ import { Formik, Field, Form } from 'formik';
 import { useField } from 'formik';
 import Select from 'react-select';
 import { Multiselect } from 'multiselect-react-dropdown';
+import Creatable from 'react-select/creatable'
 
 const InputForm = (props) => {
+    const [name, setName] = useState('')
+    const [family, setFamily] = useState('')
+    const [age, setAge] = useState('')
+    const [roleValue, setRoleValue] = useState('')
+    const [tagInputValue, setTagInputValue] = useState('')
+    const [tagValue, setTagValue] = useState('')
+    
+    
+    const handleChange = (field, value) => {
+      switch (field) {
+        case 'roles':
+          setRoleValue(value)
+          break
+  
+        default:
+          break
+      }
+    }
+  
+    const handleKeyDown = event => {
+      if (!tagInputValue) return
+      switch (event.key) {
+        case 'Enter':
+        case 'Tab':
+          setTagValue([...tagValue, createOption(tagInputValue)])
+          setTagInputValue('')
+  
+          event.preventDefault()
+          break
+  
+        default:
+          break
+      }
+    }
+  
+    const createOption = label => ({
+      label,
+      value: label
+    })
+  
+    const handleInputChange = (value) => {
+      setTagInputValue(value)
+    }
+
     const data = [{Val: 'Kościół',id:1},{Val: 'Stare budynki', id:2} , {Val: 'Twój stary', id:3}, {Val: 'Roman', id:5},{Val: 'Tanie dziwki', id:5}]
     const [options] = useState(data);
     function SelectField(props) {
@@ -38,7 +83,7 @@ const InputForm = (props) => {
         //     errors.subject = 'Subject is required';
         // }
 
-        return errors;
+        // return errors;
     };
 
 
@@ -85,7 +130,7 @@ const InputForm = (props) => {
                         ) : null}
                     </div>
 
-                    <div className="form-group">
+                    {/* <div className="form-group">
                         <label htmlFor="preferences">Preferences</label>
                         <Multiselect 
                          options={options}
@@ -99,8 +144,26 @@ const InputForm = (props) => {
                             // name="campfeatures"
                             // options={selectObjects}
                         />
+                    </div> */}
+                    <div className="form-group">
+                        <label htmlFor="preferences">Preferences</label>
+                              <Creatable
+                                isClearable
+                                isMulti
+                                components={
+                                { DropdownIndicator: null }
+                                }
+                                options={options}
+                                formatCreateLabel={() => undefined}
+                                inputValue={tagInputValue}
+                                menuIsOpen={false}
+                                onChange={(value) => handleChange('tags', value)}
+                                placeholder='Type something and press enter...'
+                                onKeyDown={handleKeyDown}
+                                onInputChange={handleInputChange}
+                                value={tagValue}
+                            />
                     </div>
-                    
                     {/* <div className="form-group">
                         <label htmlFor="subject">Subject</label>
                         <Field name="subject" className={(formik.touched.subject && formik.errors.subject) ? 'form-control is-invalid' : 'form-control'} type="text" />
