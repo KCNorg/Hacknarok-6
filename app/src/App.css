@@ -58,6 +58,11 @@ body, html, .App, #root, .auth-wrapper {
   transition: all .3s;
 }
 
+.map-img {
+  width: auto;
+  height: 1200px;
+}
+
 ::-webkit-scrollbar { 
   display: none; 
 }

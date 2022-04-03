@@ -61,11 +61,50 @@ class App extends React.Component {
                 </div>
                 </div>
                 {(this.state.stage === 1) ? 
+                            
+                <div class="row">
+                    <div className="column">
+                        <table className="table">
+                        <thead className="table-light">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Points</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        
+                        <tr>
+                            <td>Jill</td>
+                            <td>Smith</td>
+                            <td>50</td>
+                        </tr>
+                        <tr>
+                            <td>Eve</td>
+                            <td>Jackson</td>
+                            <td>94</td>
+                        </tr>
+                        <tr>
+                            <td>Adam</td>
+                            <td>Johnson</td>
+                            <td>67</td>
+                        </tr>
+                        </tbody>
+
+                        </table>
+                    </div>
+                    
+                    <div className="column">
                     <div className="map-wrapper">
                         <div className="map-inner">
+
                             <img src={this.state.map}></img>
+
                         </div>
                     </div>
+                    </div>
+                </div>
                 : null}
             </main>
 
