@@ -1,9 +1,19 @@
 import React, {useState} from 'react';
-import { Formik, Field, Form } from 'formik';
-import { useField } from 'formik';
+import { Formik, Field, Form, useField } from 'formik';
 import Select from 'react-select';
 import { Multiselect } from 'multiselect-react-dropdown';
 import Creatable from 'react-select/creatable'
+
+const sendValues = (values) => {
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values)
+    };
+    fetch('http://localhost:3000/send_values', requestOptions)
+        .then(response => response.json())
+        .then(data => this.setState(values, null, 2));
+}
 
 const InputForm = (props) => {
     const [name, setName] = useState('')
@@ -92,8 +102,7 @@ const InputForm = (props) => {
             initialValues={{ budget: '', startingplace: '', destination: '', preferences: ''}}
             onSubmit={(values, { setSubmitting }) => {
                 setTimeout(() => {
-
-                    alert(JSON.stringify(values, null, 2));
+                    sendValues(values);
                     setSubmitting(false);
                     props.handler(1);
 

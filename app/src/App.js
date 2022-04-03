@@ -61,7 +61,6 @@ class App extends React.Component {
                                 </div>
                             </div>
                         : null}
-
                     </div>
                 </div>
                 </div>
