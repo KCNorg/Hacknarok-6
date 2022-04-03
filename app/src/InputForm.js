@@ -1,21 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Formik, Field, Form } from 'formik';
-// import { useField } from 'formik';
-// import Select from 'react-select';
+import { useField } from 'formik';
+import Select from 'react-select';
+import { Multiselect } from 'multiselect-react-dropdown';
 
 const InputForm = (props) => {
-    // function SelectField(props) {
-    //     const [field, state, { setValue, setTouched }] = useField(props.field.name);
+    const data = [{Val: 'Kościół',id:1},{Val: 'Stare budynki', id:2} , {Val: 'Twój stary', id:3}, {Val: 'Roman', id:5},{Val: 'Tanie dziwki', id:5}]
+    const [options] = useState(data);
+    function SelectField(props) {
+        const [field, state, { setValue, setTouched }] = useField(props.field.name);
         
-    //     // value is an array now
-    //     const onChange = (value) => {
-    //       setValue(value);
-    //     };
+        // value is an array now
+        const onChange = (value) => {
+          setValue(value);
+        };
       
-    //    // use value to make this a  controlled component
-    //    // now when the form receives a value for 'campfeatures' it will populate as expected
-    //     return <Select {...props} value={state?.value} isMulti onChange={onChange} onBlur={setTouched} />;
-    // }
+       // use value to make this a  controlled component
+       // now when the form receives a value for 'campfeatures' it will populate as expected
+        return <Select {...props} value={state?.value} isMulti onChange={onChange} onBlur={setTouched} />;
+    }
 
     const validateForm = values => {
         const errors = {};
@@ -82,14 +85,21 @@ const InputForm = (props) => {
                         ) : null}
                     </div>
 
-                    {/* <div className="form-group">
+                    <div className="form-group">
                         <label htmlFor="preferences">Preferences</label>
-                        <Field
-                            component={SelectField}
-                            name="campfeatures"
-                            options={selectObjects}
+                        <Multiselect 
+                         options={options}
+                         displayValue="Val"
+                         components={{ Option }}
+                         isMulti closeMenuOnSelect={true}
+                         hideSelectedOptions={true}
+                         controlShouldRenderValue = { true }
+
+                            // component={SelectField}
+                            // name="campfeatures"
+                            // options={selectObjects}
                         />
-                    </div> */}
+                    </div>
                     
                     {/* <div className="form-group">
                         <label htmlFor="subject">Subject</label>
