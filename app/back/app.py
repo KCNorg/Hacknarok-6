@@ -1,6 +1,7 @@
 from flask import Flask, request
 import time
 import main
+import json
 
 
 app = Flask(__name__)
@@ -13,5 +14,5 @@ def get_curr_time():
 
 @app.route('/run', methods=['POST'], strict_slashes=False)
 def run():
-    main.main()
-    return json.dumps({'success': True}), 200, {'ContentType': 'application/json'} 
+    res = main.main()
+    return json.dumps(res), 200, {'ContentType': 'application/json'} 

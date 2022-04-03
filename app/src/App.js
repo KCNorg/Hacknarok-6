@@ -6,16 +6,20 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = { 
-            stage: 0 
+            stage: 0,
+            map: ""
         };
 
         this.handler = this.handler.bind(this)
     }
 
-    handler = (newStage) => {
-        console.log("ESSSSSSSAAAA")
+    handler = (data) => {
+        console.log(data)
         this.setState({
-            stage: newStage
+            map: data.map
+        })
+        this.setState({
+            stage: 1,
         })
     }
 
@@ -59,7 +63,7 @@ class App extends React.Component {
                 {(this.state.stage === 1) ? 
                     <div className="map-wrapper">
                         <div className="map-inner">
-                            <img src="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=1800&height=800&center=lonlat:19.8933483,50.0549163&zoom=13&marker=lonlat:19.8933483,50.0549163;color:%23ff0000;size:medium;text:1|lonlat:19.909501664466546,50.0365491;color:%23ff0000;size:medium;text:2|lonlat:19.943065943839876,50.0639468;color:%23ff0000;size:medium;text:3&apiKey=05a786c10b224977937d2a9a5f16fd40"></img>
+                            <img src={this.state.map}></img>
                         </div>
                     </div>
                 : null}
